@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>할 일 리스트</title>
+    </head>
+<body>
+
+    <input type="text" id="input">
+    <button id="addBtn">추가</button>
+
+    <ul id="list"></ul>
+
+    <script>
+        const input = document.querySelector("#input");
+        const addBtn = document.querySelector("#addBtn");
+        const list = document.querySelector("#list");
+
+        addBtn.addEventListener("click", function() {
+
+            const value = input.value.trim();
+
+            if (value === "") {
+                return;
+            }
+
+        const li =document.createElement("li");
+        li.textContent = value;
+
+        const btn = document.createElement("button");
+        btn.textContent = "삭제";
+
+        li.appendChild(btn);
+
+        list.appendChild(li);
+
+        input.value = "";
+        });
+
+        list.addEventListener("click", function(e) {
+          const target = e.target;
+
+      
+      if (target.tagName === "BUTTON") {
+        target.parentElement.remove();
+      }
+
+   
+      if (target.tagName === "LI") {
+        target.textContent = target.textContent + " (완료)";
+      }   
+      
+        });
+    </script>
+</body>
+</html>
